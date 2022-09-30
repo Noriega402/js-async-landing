@@ -1,4 +1,4 @@
-const API = 'https://youtube-v31.p.rapidapi.com/search?channelId=UCXR7VjA26PcHP3vb6F2X3VQ&part=snippet%2Cid&order=date&maxResults=16';
+const API = 'https://youtube-v31.p.rapidapi.com/search?channelId=UCanMxWvOoiwtjLYm08Bo8QQ&part=snippet%2Cid&order=date&maxResults=20';
 
 const content = document.getElementById('content');
 const profile = document.getElementById('img-profile');
@@ -13,8 +13,8 @@ const options = {
     }
 };
 
-async function fecthData(url) {
-    const response = await fecth(url, options);
+async function fetchData(url) {
+    const response = await fetch(url, options);
     const data = await response.json(response);
     return data;
 }
@@ -22,23 +22,24 @@ async function fecthData(url) {
 //funcion anonima autoejecutable
 (async () => {
     try {
-        const videos = await fecthData(API);
+        const videos = await fetchData(API);
         let card = `${videos.items.map(video => `
-            <div class="group relative">
-                <div
-                    class="w-full bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:aspect-none">
-                    <img src="${video.snippet.thumnails.high.url}" alt="${video.snippet.description}" class="w-full">
+                <div class="group relative">
+                    <div
+                        class="w-full bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:aspect-none">
+                        <img src="${video.snippet.thumbnails.high.url}" alt="${video.snippet.description}" class="w-full">
+                    </div>
+                    <div class="mt-4 flex justify-between">
+                        <h3 class="text-sm text-gray-700">
+                            <span aria-hidden="true" class="absolute inset-0"></span>
+                            ${video.snippet.title}
+                        </h3>
+                    </div>
                 </div>
-                <div class="mt-4 flex justify-between">
-                    <h3 class="text-sm text-gray-700">
-                        <span aria-hidden="true" class="absolute inset-0"></span>
-                        ${video.snippet.title}
-                    </h3>
-                </div>
-            </div>
-        `)}
-        `;
+            `).slice(0,8).join('')}
+        `; // .slice().join() utiliza solo 8 datos y los une
+        content.innerHTML = card;
     } catch (error) {
-
+        console.log(error);
     }
 })();
