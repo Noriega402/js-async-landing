@@ -1,4 +1,7 @@
 const API = 'https://youtube-v31.p.rapidapi.com/search?channelId=UCXR7VjA26PcHP3vb6F2X3VQ&part=snippet%2Cid&order=date&maxResults=16';
+
+const content = document.getElementById('content');
+
 const options = {
     method: 'GET',
     headers: {
@@ -6,7 +9,6 @@ const options = {
         'X-RapidAPI-Host': 'youtube-v31.p.rapidapi.com'
     }
 };
-
 
 async function fecthData(url) {
     const response = await fecth(url, options);
