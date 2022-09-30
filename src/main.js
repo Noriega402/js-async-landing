@@ -1,6 +1,9 @@
 const API = 'https://youtube-v31.p.rapidapi.com/search?channelId=UCXR7VjA26PcHP3vb6F2X3VQ&part=snippet%2Cid&order=date&maxResults=16';
 
 const content = document.getElementById('content');
+const profile = document.getElementById('img-profile');
+
+profile.setAttribute('src','https://scontent-gua1-1.xx.fbcdn.net/v/t1.6435-9/161437376_199791038535325_1848588809446346346_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=e3f864&_nc_ohc=_mwCjouTST4AX-UZIKY&_nc_ht=scontent-gua1-1.xx&oh=00_AT_4gHQLMEnr6t6YILipEiFf9u-TU1EVE8XfAYI84Tmfig&oe=635B3BE8');
 
 const options = {
     method: 'GET',
